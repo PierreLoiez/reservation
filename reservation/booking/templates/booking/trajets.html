@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+    <title>Trajets</title>
+</head>
+<body>
+    <h1>Trajets</h1>
+    {% if trajets %}
+    <ul>
+        {% for trajet in trajets %}
+        <li>{{trajet.gareDepart.nom}}  --  {{trajet.gareArrivee.nom}}</li>
+        {%endfor%}
+    {%else%}
+        <p>Aucun trajet disponible</p>
+    {%endif%}
+    </body>
