@@ -9,6 +9,7 @@
         {% for trajet in trajets %}
         <li>{{trajet.gareDepart.nom}}  --  {{trajet.gareArrivee.nom}}</li>
         {%endfor%}
+    <a href="../reservations">Voir les réservations</a>
     {%else%}
         <p>Aucun trajet disponible</p>
     {%endif%}

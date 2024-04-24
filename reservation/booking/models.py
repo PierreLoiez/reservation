@@ -31,4 +31,11 @@ class Client(models.Model):
         on_delete=models.CASCADE, 
         )
 
+class Reservation(models.Model):
+    dateResa = models.DateField(auto_now=True)
+    numeroResa = models.IntegerField(primary_key=True)
+    numeroPlace = models.IntegerField()
+    trajet = models.ForeignKey(Trajet, on_delete=models.CASCADE)
+    client = models.ForeignKey(Client, on_delete=models.CASCADE)
+    passager = models.ForeignKey(Passager, on_delete=models.CASCADE)
 

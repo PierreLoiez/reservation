@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<head>
+    <title>Réservations</title>
+</head>
+<body>
+    <h1>Réservations</h1>
+    {% if resas %}
+    <ul>
+        {% for resa in resas %}
+        <li><a href="{{resa.numeroResa}}">{{resa.trajet.gareDepart.nom}}  --  {{resa.trajet.gareArrivee.nom}}</a></li>
+        {%endfor%}
+    {%else%}
+        <p>Aucune réservation effecuée</p>
+    {%endif%}
+    </body>
