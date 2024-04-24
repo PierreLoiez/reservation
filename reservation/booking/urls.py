@@ -5,6 +5,7 @@ app_name = "booking"
 urlpatterns = [
     path("trajets/", views.Trajets, name="Trajets"),
     path("reservations/", views.Reservations, name="Reservations"),
-    path("reservations/<int:pk>/", views.ReservationDeet, name="Reservation")
+    path("reservations/<int:pk>/", views.ReservationDeet, name="Reservation"),
+    path("nouvelle_reservation/", views.EditRes, name="NouvelleResa"),
     
 ]

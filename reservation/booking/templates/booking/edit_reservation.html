@@ -1,0 +1,12 @@
+<head><title>Nouvelle Réservation</title></head>
+<body>
+<form method="post" action="">
+    {% csrf_token %}
+    <p>Passager : {{ form.passager}} </p>
+
+    <p>Trajet désiré : {{ form.trajet }} <br></p>
+    <p>Place numéro : {{ form.numeroPlace}}
+    <input type="submit">
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</body>
