@@ -1,15 +1,32 @@
-<head><title>Nouvelle Réservation</title></head>
+<!DOCTYPE html>
+
+{%load static%}
+<head>
+    <title>Nouvelle Réservation</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">  
+
+</head>
 <body>
-<form method="post" action="">
     <h1>Création/modification de trajet</h1>
-    <a href = {%url 'booking:Homepage'%}><button>home</button></a>
+    <div class="topnav">
+        <a href="../accounts/login"><button class="button" type="button" >Login</button></a>
+        <a href="{%url 'booking:Trajets' %}"><button class="button" type="button" >Trajets</button></a>
+        <a href="{%url 'booking:Reservations' %}"><button class="button" type="button" >Reservations</button></a>
+        </div>
+<form method="post" action="">
+
+
     {% csrf_token %}
-    <p>Passager : {{ form.passager}} <a href ={%url 'booking:CreerPass' %} >Creer nouveau passager</a></p>
+    <p>Passager : {{ form.passager}} </p>
 
     <p>Trajet désiré : {{ form.trajet }} <br></p>
-    <p>Place numéro : {{ form.numeroPlace}}
-    <input type="submit", value="Submit Request">
+    <p>Place numéro : {{ form.numeroPlace}}<br><br><br>
+    <input class="button", type="submit", value="Submit Request">
     
 
     </form>
+    <a href ={%url 'booking:CreerPass' %} ><button class="button">Creer nouveau passager</button></a>
+    <div>
+        <a href = {%url 'booking:Homepage'%}><img src="{% static 'trenitalia_logo.svg' %}" class="logo"></a>
+    </div>
 </body>

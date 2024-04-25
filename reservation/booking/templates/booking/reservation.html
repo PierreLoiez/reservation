@@ -1,8 +1,54 @@
 <!DOCTYPE html>
-<body>
-    <h1>{{resa}}</h1>
-    <a href = {%url 'booking:Homepage'%}><button>Home</button></a>
-    <li>{{resa.trajet.gareDepart.nom}}  --  {{resa.trajet.gareArrivee.nom}}</li>
-    <li>{{resa.trajet.DHDepart}}  --  {{resa.trajet.DHArrivee}}</li>
-    <a href="/booking/modif_reservation/{{resa.numeroResa}}" >Modifier la Réservation</a>
+{%load static%}
+<head>
+    <title>Réservations</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">  
+
+
+</head>
+    <h1>Réservation n°{{resa.numeroResa}}</h1>
+    <body>
+        <div class="topnav">
+            <a href="../../../accounts/login"><button class="button" type="button" >Login</button></a>
+            <a href="{%url 'booking:Trajets' %}"><button class="button" type="button" >Trajets</button></a>
+            <a href="{%url 'booking:Reservations' %}"><button class="button" type="button" >Reservations</button></a>
+            </div>
+
+    <table>
+        <tr>
+            <th>Champ</th>
+            <th>Détail de la Réservation</th>
+        </tr>
+        <tr>
+            <td>Numéro de Réservation</td>
+            <td>{{resa.numeroResa}}</td>
+        </tr>
+        <tr>
+            <td>Gare de Départ</td>
+            <td>{{resa.trajet.gareDepart.nom}}</td>
+        </tr>
+        <tr>
+            <td>Gare D'Arrivée</td>
+            <td>{{resa.trajet.gareArrivee.nom}}</td>
+        </tr>
+
+        <tr>
+            <td>Date et Heure de Départ</td>
+            <td>{{resa.trajet.DHDepart}}</td>
+        </tr>
+        <tr>
+            <td>Date et Heure D'Arrivée</td>
+            <td>{{resa.trajet.DHArrivee}}</td>
+        </tr>
+        <tr>
+            <td>Numéro de Place</td>
+            <td>{{resa.numeroPlace}}</td>
+        </tr>
+    </table>
+
+
+    <a href="/booking/modif_reservation/{{resa.numeroResa}}" ><button class="button">Modifier la Réservation</button></a>
+    <div>
+        <a href = {%url 'booking:Homepage'%}><img src="{% static 'trenitalia_logo.svg' %}" class="logo"></a>
+    </div>
 </body>

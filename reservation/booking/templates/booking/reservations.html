@@ -1,19 +1,23 @@
 <!DOCTYPE html>
+{%load static%}
 <head>
     <title>Réservations</title>
-    <style>
-        table, th, td {
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'style.css' %}">  
+
+
 </head>
 <body>
 
     <h1>Réservations</h1>
-    <a href = {%url 'booking:Homepage'%}><button>Home</button></a>
+    <div class="topnav">
+        <a href="../../accounts/login"><button class="button" type="button" >Login</button></a>
+        <a href="{%url 'booking:Trajets' %}"><button class="button" type="button" >Trajets</button></a>
+        <a href="{%url 'booking:Reservations' %}"><button class="button" type="button" >Reservations</button></a>
+        <a href = {%url 'booking:Homepage'%}><button class="button">Home</button></a>
+    </div>
     {% if resas %}
-    <ul>
-    <table style = "width:100%">
+
+    <table>
         <tr>
             <th>Numéro de Réservation</th>
             <th>Gare Départ</th>
@@ -23,22 +27,26 @@
         </tr>
 
 
-        <ul>
+
             {% for resa in resas %}
     
         <tr>
-            <td><a href = "{{resa.numeroResa}}">{{resa.numeroResa}}</a></td>
-            <td>{{resa.trajet.gareDepart.nom}}</td>
-            <td>{{resa.trajet.gareArrivee.nom}}</td>
-            <td>{{resa.trajet.DHDepart}}</td>
+            <td><a href = "{{resa.numeroResa}}"><button class='tablebutton1'>{{resa.numeroResa}}</button></a></td>
+            <td><a href = "{{resa.numeroResa}}"><button class='tablebutton1'>{{resa.trajet.gareDepart.nom}}</button></a></td>
+            <td><a href = "{{resa.numeroResa}}"><button class='tablebutton1'>{{resa.trajet.gareArrivee.nom}}</button></a></td>
+            <td><a href = "{{resa.numeroResa}}"><button class='tablebutton1'>{{resa.trajet.DHDepart}}</button></a></td>
             
         </tr>
    
         {%endfor%}
     </table>
-    <p><br><br><a href = {%url 'booking:NouvelleResa' %} >Créer une nouvelle réservation</a></p>
+
     {%else%}
     <p>Vous n'avez pas de trajets</p>
-    <p><br><br><a href = {%url 'booking:NouvelleResa' %} >Créer une nouvelle réservation</a></p>
+
     
     {%endif%}
+    <br><br><a href = {%url 'booking:NouvelleResa' %} ><button class="button">Créer une nouvelle réservation</button></a>
+    <div>
+        <a href = {%url 'booking:Homepage'%}><img src="{% static 'trenitalia_logo.svg' %}" class="logo"></a>
+    </div>
