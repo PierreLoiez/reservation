@@ -1,13 +1,32 @@
 <!DOCTYPE html>
 <head>
     <title>Trajets</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <h1>Trajets</h1>
+    <a href = {%url 'booking:Homepage'%}><button>Home</button></a>
     {% if trajets %}
+    <table style = "width:100%">
+        <tr>
+            <th>Gare Départ</th>
+            <th>Gare Arrivée</th>
+            <th>Date Départ</th>
+            <th>Date Arrivée</th>
+        </tr>
     <ul>
         {% for trajet in trajets %}
-        <li>{{trajet.gareDepart.nom}}  --  {{trajet.gareArrivee.nom}}</li>
+        <tr>
+            <td>{{trajet.gareDepart.nom}}</td>
+            <td>{{trajet.gareArrivee.nom}}</td>
+            <td>{{trajet.DHDepart}}</td>
+            <td>{{trajet.DHArrivee}}</td>
+        </tr>
+
         {%endfor%}
     <a href="../reservations">Voir les réservations</a>
     {%else%}

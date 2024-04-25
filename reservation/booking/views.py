@@ -1,6 +1,6 @@
 
 from .models import Trajet, Client, Passager, Reservation
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from .forms import ResForm, PassagerForm
 # Create your views here.
@@ -23,23 +23,64 @@ def ReservationDeet(request, pk):
     return render(request, template, {"resa" : resa})
 
 
-def EditRes(request):
+def EditRes(request, id=None):
     template = "booking/edit_reservation.html"
     
     
     if request.method == 'POST':
-        input_form = ResForm(request.POST)
-
-        reservation = input_form.save()
-
+        input_form = ResForm(request, request.POST)
         
+        
+        if id != None:
+            reservation = input_form.save(commit=False)
+            resa = Reservation.objects.get(numeroResa=id)
+            resa.passager = reservation.passager
+            resa.trajet = reservation.trajet
+            resa.numeroPlace = reservation.numeroPlace
+            reservation.delete()
+            resa.save()
+            url = '/booking/reservations/' + str(id)
+            
+        else:
+            reservation = input_form.save(commit=False)
+            reservation.client = Client.objects.get(user=request.user)
+            reservation.numeroResa = len(Reservation.objects.order_by('numeroResa'))
+            reservation.save()
+            url = '/booking/reservations/'+str(reservation.numeroResa)
+        return redirect(url)
+            
     else:
-        input_form = ResForm()
-        pass_form = PassagerForm()
-        
+        if id != None:
+            resa = Reservation.objects.get(numeroResa=id)
+            input_form = ResForm(request, initial={'passager':resa.passager, 'trajet':resa.trajet, 'numeroPlace':resa.numeroPlace, })
+
+        else:
+            input_form = ResForm(request)
         
         
             
     
-    context = {"form" : input_form, "form2":pass_form}
+    context = {"form" : input_form} 
     return render(request, template, context)
+
+def Homepage(request):
+    template = "booking/homepage.html"
+    return render(request, template)
+
+def CreerPass(request):
+    template = "booking/create_pass.html"
+        
+    if request.method == 'POST':
+        input_form = PassagerForm(request.POST)
+        
+        passager = input_form.save(commit=False)
+        passager.client = Client.objects.get(user=request.user)
+        passager.save()
+        return redirect('/booking/nouvelle_reservation')
+    else:
+        input_form = PassagerForm()
+    context = {"form" : input_form} 
+    return render(request, template, context)
+   
+
+    

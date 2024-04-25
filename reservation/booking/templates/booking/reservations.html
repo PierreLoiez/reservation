@@ -1,16 +1,44 @@
 <!DOCTYPE html>
 <head>
     <title>Réservations</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
+
     <h1>Réservations</h1>
+    <a href = {%url 'booking:Homepage'%}><button>Home</button></a>
     {% if resas %}
     <ul>
-        {% for resa in resas %}
-        <li><a href="{{resa.numeroResa}}">{{resa.trajet.gareDepart.nom}}  --  {{resa.trajet.gareArrivee.nom}}</a></li>
+    <table style = "width:100%">
+        <tr>
+            <th>Numéro de Réservation</th>
+            <th>Gare Départ</th>
+            <th>Gare Arrivée</th>
+            <th>Date Départ</th>
+            
+        </tr>
+
+
+        <ul>
+            {% for resa in resas %}
+    
+        <tr>
+            <td><a href = "{{resa.numeroResa}}">{{resa.numeroResa}}</a></td>
+            <td>{{resa.trajet.gareDepart.nom}}</td>
+            <td>{{resa.trajet.gareArrivee.nom}}</td>
+            <td>{{resa.trajet.DHDepart}}</td>
+            
+        </tr>
+   
         {%endfor%}
+    </table>
+    <p><br><br><a href = {%url 'booking:NouvelleResa' %} >Créer une nouvelle réservation</a></p>
     {%else%}
-        <p>Aucune réservation effecuée</p>
+    <p>Vous n'avez pas de trajets</p>
+    <p><br><br><a href = {%url 'booking:NouvelleResa' %} >Créer une nouvelle réservation</a></p>
+    
     {%endif%}
-    <a href="{% url 'booking:NouvelleResa'%} "> Créer une nouvelle réservation </a>
-    </body>

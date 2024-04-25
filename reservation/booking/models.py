@@ -42,13 +42,14 @@ class Passager(models.Model):
     nom = models.CharField(max_length=30)
     prenom = models.CharField(max_length=30)
     dateDeNaissance = models.DateField()
+    client = models.ForeignKey(Client, on_delete=models.CASCADE, default=2)
     def __str__(self):
         return self.nom.upper() + " " + self.prenom.title()
 
     
 class Reservation(models.Model):
     dateResa = models.DateField(auto_now=True)
-    numeroResa = models.IntegerField(primary_key=True, default=random.randint(0, 100000000))
+    numeroResa = models.IntegerField(primary_key=True)
     numeroPlace = models.IntegerField()
     trajet = models.ForeignKey(Trajet, on_delete=models.CASCADE)
     client = models.ForeignKey(Client, on_delete=models.CASCADE)

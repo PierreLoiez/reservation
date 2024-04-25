@@ -1,12 +1,15 @@
 <head><title>Nouvelle Réservation</title></head>
 <body>
 <form method="post" action="">
+    <h1>Création/modification de trajet</h1>
+    <a href = {%url 'booking:Homepage'%}><button>home</button></a>
     {% csrf_token %}
-    <p>Passager : {{ form.passager}} </p>
+    <p>Passager : {{ form.passager}} <a href ={%url 'booking:CreerPass' %} >Creer nouveau passager</a></p>
 
     <p>Trajet désiré : {{ form.trajet }} <br></p>
     <p>Place numéro : {{ form.numeroPlace}}
-    <input type="submit">
-    <input type="hidden" name="next" value="{{ next }}">
+    <input type="submit", value="Submit Request">
+    
+
     </form>
 </body>

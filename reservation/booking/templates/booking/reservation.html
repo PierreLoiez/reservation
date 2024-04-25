@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <body>
-    <h1>Info Trajet : </h1>
+    <h1>{{resa}}</h1>
+    <a href = {%url 'booking:Homepage'%}><button>Home</button></a>
     <li>{{resa.trajet.gareDepart.nom}}  --  {{resa.trajet.gareArrivee.nom}}</li>
-    <li>{{resa.trajet.dateDepart}}  --  {{resa.trajet.dateArrivee}}</li>
+    <li>{{resa.trajet.DHDepart}}  --  {{resa.trajet.DHArrivee}}</li>
+    <a href="/booking/modif_reservation/{{resa.numeroResa}}" >Modifier la Réservation</a>
 </body>

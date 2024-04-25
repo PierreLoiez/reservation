@@ -1,0 +1,14 @@
+<head><title>Nouvelle Réservation</title></head>
+<body>
+<form method="post" action="">
+    {% csrf_token %}
+    <h1>Créer Passager</h1>
+    <a href = {%url 'booking:Homepage'%}><button>home</button></a>
+    <p>Nom : {{ form.nom}} </p>
+
+    <p>Prénom : {{ form.prenom }} <br></p>
+    <p>Date de Naissance : {{ form.dateDeNaissance}}
+    <input type="submit">
+    <input type="hidden" name="next" value="{{ next }}">
+    </form>
+</body>
